@@ -5,7 +5,7 @@
 
 <a id="english"></a>
 
-Something along the lines of a C# engine/framework for TERMINAL games—or honestly, whatever you want if you figure it out. The main idea is to quickly and easily slap together a simple console game, and then, if you feel like it, you could theoretically add graphics.
+Something along the lines of a C# engine/framework for TERMINAL games, or honestly, whatever you want if you figure it out. The main idea is to quickly and easily slap together a simple console game, and then, if you feel like it, you could theoretically add graphics.
 
 Works kind of like an ECS (Entity Component System).
 ## Authors
