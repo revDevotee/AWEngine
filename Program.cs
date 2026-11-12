@@ -8,12 +8,7 @@ namespace AWEngine
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("??????????");
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = "https://i.pinimg.com/736x/75/1c/aa/751caa6c10cded1a7b525979a32a8ae9.jpg",
-                UseShellExecute = true
-            });
+            Console.WriteLine(":D");
         }
     }
 }
