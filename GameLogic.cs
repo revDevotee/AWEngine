@@ -213,33 +213,25 @@ namespace AWEngine
     {
 
     }
-    /// <summary>
-    /// placeholder for modding in future :D
-    /// </summary>
-    public class AWEngineAPI
-    {
-        private WorldContext _context = new WorldContext();
-        private SystemManager _systemManager = new SystemManager();
-    }
-    //placeholder
-    interface IMod
-    {
-        public abstract void Mod();
-    }
     public abstract class AWEngine
     {
         public bool running = true;
+        public readonly static string version = "1.1-HelloWorld";
+        public readonly static string versionCode = "1.1";
+        public readonly static string versionName = "HelloWorld";
         protected abstract void Init();
         protected abstract void Update();
-        public void Run(bool FastSplash = false)
+        protected abstract void Render();
+        public void Run(int splash = 1)
         {
             try
             {
-                SplashScreen(FastSplash);
+                SplashScreen(splash);
                 Init();
                 while (running)
                 {
                     Update();
+                    Render();
                 }
             }
             catch (Exception ex)
@@ -265,28 +257,28 @@ namespace AWEngine
         /// <summary>
         /// Really cool splash screen about engine. Pls use it :D
         /// </summary>
-        /// <param name="FastSplash">if true, it will show just text for 1.5 sec</param>
-        public void SplashScreen(bool FastSplash)
+        /// <param name="splash">0 - No splash; 1 - Cool splash; 2 - fast splash which just show a text for 1.5 sec</param>
+        public static void SplashScreen(int splash = 1)
         {
-            if (!FastSplash)
+            if (splash == 1)
             {
-                string splash = """
+                string logo = $"""
                     __________       ___________              _____             
                     ___    |_ |     / /__  ____/_____________ ___(_)___________ 
                     __  /| |_ | /| / /__  __/  __  __ \_  __ `/_  /__  __ \  _ \
                     _  ___ |_ |/ |/ / _  /___  _  / / /  /_/ /_  / _  / / /  __/
                     /_/  |_|___/|__/  /_____/  /_/ /_/_\__, / /_/  /_/ /_/\___/ 
-                                                      /____/                    
+                                                      /____/
                     """;
-                Console.Write($"                       Powered with\n{splash}");
+                Console.Write($"                       Powered with\n{logo}");
                 Console.Write($"\n\n                  AWEngine by revDevotee");
                 Console.Write($"\n               All rights are NOT reserved");
                 Console.Write($"\n\n                     Initializing [ ]");
                 Console.SetCursorPosition(Console.GetCursorPosition().Left - 1, Console.GetCursorPosition().Top);
-                string[] chars = new string[] { "-", @"\", @"|", @"/"}; 
+                string[] chars = { "-", @"\", @"|", @"/" };
                 for (int i = 0; i < 6; i++)
                 {
-                    foreach(string _ in chars)
+                    foreach (string _ in chars)
                     {
                         Console.SetCursorPosition(Console.GetCursorPosition().Left - 1, Console.GetCursorPosition().Top);
                         Console.Write(_);
@@ -294,11 +286,15 @@ namespace AWEngine
                     }
                 }
             }
-            else
+            else if (splash == 2)
             {
                 Console.SetCursorPosition(0, 2);
                 Console.WriteLine("Powered with AWEngine by revDevotee. All right are NOT reserved.");
                 Thread.Sleep(1500);
+            }
+            else
+            {
+
             }
         }
     }
